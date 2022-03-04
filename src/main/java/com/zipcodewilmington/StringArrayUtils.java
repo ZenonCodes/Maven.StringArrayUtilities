@@ -1,5 +1,8 @@
 package com.zipcodewilmington;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -42,14 +45,27 @@ public class StringArrayUtils {
      * @return true if the array contains the specified `value`
      */ // TODO
     public static boolean contains(String[] array, String value) {
-        return ;
-    }
+        //Use hash
+        HashSet<String> hashset = new HashSet<>();
+        // add each element in the string object array as values in hashmap
+        for (String element: array){
+            //if the element is not already in the set then add it
+            hashset.add(element);
+            }
+            //when all unique elements have been added to the set
+            //check to see if the parameter value is contained in the set
+        // if the value is in the set return true otherwise return false
+            return hashset.contains(value);
+        }
+
 
     /**
      * @param array of String objects
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
+        // make a copy of the parameter array (pArrayCopy)
+        // reverse the order of the pArrayCopy
         return null;
     }
 
