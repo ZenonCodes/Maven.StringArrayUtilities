@@ -151,11 +151,35 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+        /**
+         * Brute Force:
+         * Sample Problem/Solution:
+         * {"Will the ","real", " Slim Shady"," please stand up", " ... ",
+         * "will the real Slim" " Shady"}
+         * Value = "Slim Shady"
+         * iterate through the String array and every time
+         * the current element equals value then occurCount++
+         */
+        /**
+         * Optimize
+         * Take the String[] and place every element in a HashMap as the key.
+         * if the key in the HashMap already exists upon trying to place
+         * increment the value of the key by one
+         */
+        HashMap <String, Integer> frequency = new HashMap<>();
+        frequency.put(value, 0);
+        for(String word : array){
+            if(word.equals(value)) {
+                frequency.put(word, frequency.get(word) + 1);
+            }
+        }
+
+
+        return frequency.get(value);
     }
 
     /**
-     * @param array         array of String objects
+     * @param array array of String objects
      * @param valueToRemove value to remove from array
      * @return array with identical contents excluding values of `value`
      */ // TODO
