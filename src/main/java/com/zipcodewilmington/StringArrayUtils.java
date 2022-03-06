@@ -184,7 +184,25 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+        /**
+         * Brute force:
+         * Count the number of times value to Remove appears in String array
+         * set new array length to old array length w/ outcome of above step
+         * iterate through the String[] if word.equals(valueToRemove) continue
+         * otherwise add to new array until end of String[]
+         */
+        int elemToRemove = StringArrayUtils.getNumberOfOccurrences(array, valueToRemove);
+        String[] newArray = new String[array.length - elemToRemove];
+        int i = 0;
+        for(String word : array){
+            if(word.equals(valueToRemove)){
+                continue;
+            } else{
+                newArray[i] = word;
+                i++;
+            }
+        }
+        return newArray;
     }
 
     /**
