@@ -243,7 +243,39 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+        /**
+         * Brute force:
+         * Sample:
+         * {"money", "money", "money", "must", "be", "funny", "in", "the", "rich", "man's", "world"}
+         * Solved with a lot of back and forth between testing and fiddling. Will refine
+         * logic when I am less tired.
+         */
+        int consecDupe = 0;
+        for (int i = 1; i < array.length; i++){
+            if (array[i].equals(array[i-1])){
+                consecDupe++;
+            }
+        }
+        String[] newArray = new String[array.length - consecDupe];
+        StringBuilder consecWords = new StringBuilder(30);
+        int j = 0;
+        String prev = array[0];
+        consecWords.append(prev);
+
+        for (int i = 1; i < array.length; i++){
+         // aaabccaad -> aaa b cc aa d
+            if (array[i].equals(array[i-1])){
+                consecWords.append(array[i]);
+            } else {
+                newArray[j++] = consecWords.toString();
+                consecWords.setLength(0);
+                prev = array[i];
+                consecWords.append(prev);
+            }
+            }
+        newArray[j++] = consecWords.toString();
+
+        return newArray;
     }
 
 
