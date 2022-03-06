@@ -1,5 +1,6 @@
 package com.zipcodewilmington;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -64,9 +65,15 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
+        //start with an example
+        //{"The", "quick","brown", "fox"}
         // make a copy of the parameter array (pArrayCopy)
-        // reverse the order of the pArrayCopy
-        return null;
+        String[] pArrayCopy = new String[array.length];
+        // reverse the order of the array in pArrayCopy
+        for(int i = 0; i < array.length; i++){
+            pArrayCopy[i] = array[(array.length - 1) - i];
+        }
+        return pArrayCopy;
     }
 
     /**
@@ -74,7 +81,26 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        return false;
+        String temp = null;
+        //Describe how a solution would look
+        // Start with an example
+        //{"my", "oh","my"} -> {"my", "oh","my"}
+
+        // find index of the middle element
+        int lastElem = array.length - 1;
+        int midIndex = 0 + (lastElem - 0)/2;
+        String[] pArrayCopy = array.clone();
+
+        // while we are not at the middle switch the last element with the first
+        for (int i = 0; i != midIndex; i++){
+            //swap function
+            temp = array[i];
+            array[i] = array[lastElem - i];
+            array[lastElem - i] = temp;
+        }
+        // we know the parameter array is the same backward and forward if after it runs through
+        //our swap method the output is the same as the input.
+        return Arrays.equals(pArrayCopy, array);
     }
 
     /**
@@ -82,7 +108,41 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        return false;
+        /** Sample of solution
+         * {"the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"}
+         *  Brute force:
+         *         We could combine every word in the array:
+         *         {"thequickbrownfoxjumpsoverthelazydog"}
+         *         sort the resulting combination so that it's in alphabetical order
+         *         remove all duplicates (by using hashset)
+         *         convert each letter to lowercase
+         *         then for each letter in the lowercase alphabet
+         *         if it's not present in the hashset return false
+**/
+
+        // optimize solution
+        //We could combine every word in the array
+        String pArrayX = Arrays.toString(array);
+        char [] pArrayString = pArrayX.toCharArray();
+        ////{"the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"} ->
+        //"thequickbrownfoxjumpsoverthelazydog"
+
+        //set every letter to lowercase and
+        //add each letter to a hashset to remove all duplicates
+        HashSet<Character> noDupes = new HashSet<>();
+        for (char letter : pArrayString){
+            if(Character.isLetter(letter)) {
+                noDupes.add(Character.toLowerCase(letter));
+            }
+        }
+        //if hashset size is == the number of letters in the alphabet
+        // then it is Pangramic otherwise it is not
+        int alphabetSize = 26;
+        if (noDupes.size() == alphabetSize){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
