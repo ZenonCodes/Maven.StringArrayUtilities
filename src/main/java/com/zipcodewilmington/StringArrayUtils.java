@@ -210,7 +210,32 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        /**
+         * Brute force:
+         * Sample:
+         * {"money", "money", "money", "must", "be", "funny", "in", "the", "rich", "man's", "world"}
+         * Start from index 1, go through String[] if previous value is the same as current
+         * then consecDupe++. Then create a new String[] of length array.length - consecDupe
+         * iterate through the array once more if previous value is the !same as current
+         * copy into newArray
+         */
+        int consecDupe = 0;
+        for (int i = 1; i < array.length; i++){
+            if (array[i].equals(array[i-1])){
+                consecDupe++;
+            }
+        }
+        String[] newArray = new String[array.length - consecDupe];
+        String prev = null;
+        int i = 0;
+        for (String s : array){
+            if (!s.equals(prev)){
+                prev = s;
+                newArray[i++] = s;
+            }
+        }
+
+        return newArray;
     }
 
     /**
