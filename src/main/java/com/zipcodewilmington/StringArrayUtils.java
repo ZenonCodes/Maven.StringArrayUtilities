@@ -154,8 +154,8 @@ public class StringArrayUtils {
         /**
          * Brute Force:
          * Sample Problem/Solution:
-         * {"Will the ","real", " Slim Shady"," please stand up", " ... ",
-         * "will the real Slim" " Shady"}
+         * {"Will the ","real", "Slim Shady"," please stand up", " ... ",
+         * "will the real" "Slim Shady"}
          * Value = "Slim Shady"
          * iterate through the String array and every time
          * the current element equals value then occurCount++
